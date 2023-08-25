@@ -22,8 +22,7 @@ Make sure your system meets the following requirements before installing the Tra
 Enhance your workflow efficiency with the Transfer Helper Plugin. Download it now!
 
 ## Screenshots
-![image](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/dd8a7e20-dacc-470f-83a2-511c70943a11)
-
+![image](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/15f1535a-07b3-4055-a613-b6f8e5ffb437)
 ![Screenshot 1](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/1c661e07-b360-4003-992b-cbed8d80a610)
 ![Screenshot 2](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/948cbcd8-dc7d-4548-b26d-212b70e5dcf8)
 ![Screenshot 3](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/06d15bab-fc4f-4a77-acb3-4bb02a5a23ee)
