@@ -8,6 +8,7 @@ Simplify your transfer processes with the Transfer Helper Plugin, designed to en
 - Advanced debugging capabilities
 - Direct file downloads
 - Seamless process resumption
+- Disable auto backup before convert process when actual import to LMS
 
 ## System Requirements
 
@@ -21,6 +22,7 @@ Make sure your system meets the following requirements before installing the Tra
 Enhance your workflow efficiency with the Transfer Helper Plugin. Download it now!
 
 ## Screenshots
+![image](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/dd8a7e20-dacc-470f-83a2-511c70943a11)
 
 ![Screenshot 1](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/1c661e07-b360-4003-992b-cbed8d80a610)
 ![Screenshot 2](https://github.com/surajkrsingh/ea-transfer-helper/assets/19591301/948cbcd8-dc7d-4548-b26d-212b70e5dcf8)
