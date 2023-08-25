@@ -90,4 +90,29 @@ jQuery(document).ready(function ($) {
             }
         });
     }
+
+    // Save the activity settings with ajax.
+    $('#eath-save-activity-settings-button').on('click', function () {
+        var disableAutoBackup = $('#ea_disable_auto_backup').prop('checked') ? 1 : 0;
+
+        var requestData = {
+            action: 'eath_save_activity_settings',
+            disable_auto_backup: disableAutoBackup,
+            security: eath_object.nonce
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: eath_object.ajax_url,
+            data: requestData,
+            success: function (response) {
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+            }
+        });
+    });
+    
+
 });

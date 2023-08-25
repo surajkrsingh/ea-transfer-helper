@@ -96,6 +96,55 @@ function eath_add_status_check_meta_box() {
 }
 add_action( 'ea_transfer_settings_page_right_sidebar_content', 'eath_add_status_check_meta_box' );
 
+/**
+ * Add new meta boxes with settings to check the activity status
+ * and run if required
+ *
+ * @return void
+ */
+function eath_add_settings_meta_box() {
+
+	$disable_auto_backup = get_option( 'ea_disable_auto_backup' );
+	?>
+	<div class="postbox">
+		<h2 class="postbox-title ea-normal-cursor">
+			<span><?php esc_html_e( 'Activity Settings', 'ea-transfer' ); ?></span>
+		</h2>
+		<div class="ea_transfer-setting-section">
+			<div class="ea_transfer-input-group">
+				<div class="ea_transfer-flex-styles">
+					<h4 class="ea_transfer-input-group-title"> <?php esc_html_e( 'Turn Off Automatic Backups', 'ea-transfer' ); ?> </h4>
+					<div>
+						<input
+						type='checkbox'
+						value="1"
+						id='ea_disable_auto_backup'
+						name='ea_disable_auto_backup'
+						required
+						<?php echo ! empty( $disable_auto_backup ) ? 'checked' : ''; ?>
+						/>
+
+						<span class="description">
+						<?php
+							esc_html_e( 'Enable to skip automatic backups during conversions to optimizing processing time.', 'ea-transfer' );
+						?>
+						</span>
+
+						<p>
+						<button type="button" class="button button-primary" id="eath-save-activity-settings-button">
+							<?php esc_html_e( 'Save', 'ea-transfer' ); ?>
+						</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php
+}
+add_action( 'ea_transfer_settings_page_contents_content', 'eath_add_settings_meta_box' );
+
 
 /**
  * Enqueue scripts.
@@ -186,3 +235,40 @@ function eath_rerun_activity() {
 }
 
 add_action( 'wp_ajax_eath_rerun_activity', 'eath_rerun_activity' );
+
+/**
+ * Ajax callback to save the activity settings.
+ *
+ * @return void
+ */
+function eath_save_activity_settings_callback() {
+
+	if ( ! check_ajax_referer( 'eath_nonce', 'security', false ) ) {
+		wp_send_json_error( 'Invalid nonce' );
+	}
+
+	$disable_auto_backup = isset( $_POST['disable_auto_backup'] ) ? absint( $_POST['disable_auto_backup'] ) : 0;
+	update_option( 'ea_disable_auto_backup', $disable_auto_backup );
+
+	wp_send_json_success( 'Settings saved successfully' );
+}
+add_action( 'wp_ajax_eath_save_activity_settings', 'eath_save_activity_settings_callback' );
+
+/**
+ * Avoid auto-backup if settings is enabled.
+ *
+ * @return void
+ */
+function eath_avoid_auto_backup() {
+	$disable_auto_backup = get_option( 'ea_disable_auto_backup' );
+
+	if ( ! empty( $disable_auto_backup ) ) {
+		// Prevent automatic backup before conversion.
+		remove_action( 'ea_transfer_init_learndash_import', 'ea_transfer_auto_backup_before_convert' );
+		remove_action( 'ea_transfer_init_lifter_import', 'ea_transfer_auto_backup_before_convert' );
+		remove_action( 'ea_transfer_init_lifter_to_learndash_convert', 'ea_transfer_auto_backup_before_convert' );
+		remove_action( 'ea_transfer_init_learndash_to_lifter_convert', 'ea_transfer_auto_backup_before_convert' );
+	}
+}
+
+add_action( 'init', 'eath_avoid_auto_backup' );
