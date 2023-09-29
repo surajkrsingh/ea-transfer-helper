@@ -143,7 +143,7 @@ function eath_add_settings_meta_box() {
 
 	<?php
 }
-add_action( 'ea_transfer_settings_page_contents_content', 'eath_add_settings_meta_box' );
+//add_action( 'ea_transfer_settings_page_contents_content', 'eath_add_settings_meta_box' );
 
 
 /**
@@ -252,7 +252,7 @@ function eath_save_activity_settings_callback() {
 
 	wp_send_json_success( 'Settings saved successfully' );
 }
-add_action( 'wp_ajax_eath_save_activity_settings', 'eath_save_activity_settings_callback' );
+//add_action( 'wp_ajax_eath_save_activity_settings', 'eath_save_activity_settings_callback' );
 
 /**
  * Avoid auto-backup if settings is enabled.
@@ -271,4 +271,4 @@ function eath_avoid_auto_backup() {
 	}
 }
 
-add_action( 'init', 'eath_avoid_auto_backup' );
+//add_action( 'init', 'eath_avoid_auto_backup' );
